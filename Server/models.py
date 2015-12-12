@@ -1,5 +1,5 @@
 from google.appengine.ext import ndb
-from datetime import datetime
+import datetime
 
 
 class IdentifiedModel(ndb.Model):
@@ -8,7 +8,7 @@ class IdentifiedModel(ndb.Model):
   
   @classmethod
   def getByIdentifier(cls, identifier):
-    return cls.get_by_id(identifier)
+    return cls.get_by_id(int(identifier))
 
 
 class ExpiringLink(IdentifiedModel):
@@ -27,12 +27,12 @@ class ExpiringLink(IdentifiedModel):
       return False
     
     self.key.delete()
-    return entity.expiration > datetime.now()
+    return entity.expiration > datetime.datetime.now()
     
 
 class Option(IdentifiedModel):
   title = ndb.TextProperty    (indexed=False)
-  votes = ndb.IntegerProperty (indexed=False)
+  votes = ndb.IntegerProperty (indexed=False, default=0)
 
 
 class Decision(IdentifiedModel):
@@ -40,3 +40,9 @@ class Decision(IdentifiedModel):
   expiration = ndb.DateTimeProperty   (indexed=True )
   data       = ndb.PickleProperty     (indexed=False)
   options    = ndb.StructuredProperty (Option, indexed=False, repeated=True)
+  
+  def setAge(self, expiration):
+    self.expiration = datetime.datetime.now() + datetime.timedelta(seconds=int(expiration))
+  
+  def getAge(self):
+    return max(0, (self.expiration - datetime.datetime.now()).total_seconds())
