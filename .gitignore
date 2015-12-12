@@ -35,3 +35,8 @@ Carthage/Build
 # virtualenv
 
 venv/
+
+# SQLAlchemy
+
+db_repository/
+__pycache__/
