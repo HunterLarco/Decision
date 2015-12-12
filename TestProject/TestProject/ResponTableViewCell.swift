@@ -10,8 +10,6 @@ import UIKit
 
 class ResponseTableViewCell:UITableViewCell {
     
-    
-    @IBOutlet weak var lukesImageView: UIImageView!
     @IBOutlet weak var label: UILabel!
     
     var labelString:String! {
@@ -19,9 +17,4 @@ class ResponseTableViewCell:UITableViewCell {
             self.label.text = labelString
         }
     }
-    
-    var imageData:NSData!
-    
-    
-    
 }

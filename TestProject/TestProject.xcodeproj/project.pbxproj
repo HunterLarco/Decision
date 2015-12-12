@@ -15,6 +15,8 @@
 		D57CAFBC1BE96814004F28E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D57CAFBB1BE96814004F28E3 /* Assets.xcassets */; };
 		D57CAFBF1BE96814004F28E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D57CAFBD1BE96814004F28E3 /* LaunchScreen.storyboard */; };
 		D57CAFC71BE96BA5004F28E3 /* ResponTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57CAFC61BE96BA5004F28E3 /* ResponTableViewCell.swift */; };
+		D5C83FCC1C1C00D1009B7EA7 /* VotingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C83FCB1C1C00D1009B7EA7 /* VotingViewController.swift */; };
+		D5C83FCE1C1C132D009B7EA7 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C83FCD1C1C132D009B7EA7 /* ResultsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		D57CAFC01BE96814004F28E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D57CAFC61BE96BA5004F28E3 /* ResponTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponTableViewCell.swift; sourceTree = "<group>"; };
 		D57CAFC81BE96D9C004F28E3 /* TestProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestProject-Bridging-Header.h"; sourceTree = "<group>"; };
+		D5C83FCB1C1C00D1009B7EA7 /* VotingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VotingViewController.swift; sourceTree = "<group>"; };
+		D5C83FCD1C1C132D009B7EA7 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +90,9 @@
 				D57CAFB11BE96814004F28E3 /* AppDelegate.swift */,
 				D57CAFB31BE96814004F28E3 /* ViewController.swift */,
 				D57CAFB51BE96814004F28E3 /* Main.storyboard */,
+				D5C83FCD1C1C132D009B7EA7 /* ResultsViewController.swift */,
 				D57CAFC61BE96BA5004F28E3 /* ResponTableViewCell.swift */,
+				D5C83FCB1C1C00D1009B7EA7 /* VotingViewController.swift */,
 				D57CAFC81BE96D9C004F28E3 /* TestProject-Bridging-Header.h */,
 				D57CAFBB1BE96814004F28E3 /* Assets.xcassets */,
 				D57CAFBD1BE96814004F28E3 /* LaunchScreen.storyboard */,
@@ -222,6 +228,8 @@
 				D57CAFBA1BE96814004F28E3 /* TestProject.xcdatamodeld in Sources */,
 				D57CAFC71BE96BA5004F28E3 /* ResponTableViewCell.swift in Sources */,
 				D57CAFB21BE96814004F28E3 /* AppDelegate.swift in Sources */,
+				D5C83FCC1C1C00D1009B7EA7 /* VotingViewController.swift in Sources */,
+				D5C83FCE1C1C132D009B7EA7 /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

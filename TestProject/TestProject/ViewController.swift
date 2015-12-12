@@ -9,35 +9,31 @@
 import UIKit
 import Alamofire
 
-class ViewController: UIViewController {
+let BASEURL:String = "ayy lmao"
 
-    @IBOutlet weak var tableView: UITableView!
-    var responseArray = []
+class ViewController:UIViewController {
+
+    @IBOutlet weak var tableView:UITableView!
+    var responseArray:NSArray = ["Vote", "Ayy lmao"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.getRequestToApi()
         
-        self.getRequestToApi()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func getRequestToApi () {
         
-        Alamofire.request(.GET, "" , parameters: nil)
-            .responseJSON { response in
-
-                if let JSON = response.result.value {
-                    
-                    self.responseArray = (JSON.objectForKey("response"))! as! NSArray
-                    
-                    dispatch_async(dispatch_get_main_queue(), {
-                      self.tableView.reloadData()
-                    })
-                }
+        Alamofire.request(.GET, "\(BASEURL)" , parameters: nil)
+        .responseJSON { response in
+            if let JSON = response.result.value {
+                
+                self.responseArray = (JSON.objectForKey("response"))! as! Array<String>
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                  self.tableView.reloadData()
+                })
+            }
         }
     }
 }
@@ -47,21 +43,16 @@ extension ViewController: UITableViewDelegate {
 }
 
 extension ViewController: UITableViewDataSource {
-        
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return responseArray.count;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let cell:ResponseTableViewCell = tableView.dequeueReusableCellWithIdentifier("ResponseCell", forIndexPath: indexPath) as! ResponseTableViewCell
         
-        print(responseArray)
-        print(responseArray.objectAtIndex(indexPath.row))
-        print(responseArray.objectAtIndex(indexPath.row) as! [String:AnyObject])
-        
-        var currentDict:Dictionary = responseArray.objectAtIndex(indexPath.row) as! [String:AnyObject]
-        let cellString:String = currentDict["name"] as! String
+//        var currentDict:Dictionary =
+        let cellString:String = responseArray.objectAtIndex(indexPath.row) as! String
         
         cell.labelString = cellString
  
