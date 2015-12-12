@@ -1,5 +1,5 @@
-application: decisionapp
-version: 0-0-0
+application: groupdecisionapp
+version: 1-0-0
 runtime: python27
 api_version: 1
 threadsafe: yes
