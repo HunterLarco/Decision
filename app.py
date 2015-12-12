@@ -1,28 +1,30 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
+from datetime import datetime
+
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db = SQLAlchemy(app)
 
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True)
-    email = db.Column(db.String(120), unique=True)
-
-    def __init__(self, username, email):
-        self.username = username
-        self.email = email
-
-    def __repr__(self):
-        return '<User %r>' % self.username
+@app.route('/decision/', methods=['POST'])
+def createDecision():
+  admin = User('admin', 'admin@example.com')
+  db.session.add(admin)
+  db.session.commit()
 
 
+@app.route('/decision/<identifier>/', methods=['GET'])
+def getDecision(identifier=None):
+  return 'Hello World!'
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
+
+@app.route('/decision/<identifier>/votes/', methods=['POST', 'GET'])
+def votes(identifier=None):
+  return 'Hello World!'
+
 
 if __name__ == '__main__':
-    app.run()
+  app.run(debug=True)
