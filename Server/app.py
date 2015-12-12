@@ -13,12 +13,24 @@ def parameters(*params):
         if not param in body:
           return self.error(400)
         kwargs[param] = body[param]
-      func(self, *args, **kwargs)
+      return func(self, *args, **kwargs)
     return helper
   return decorator
 
 
+def openendpoint(func):
+  def helper(self, *args, **kwargs):
+    self.response.headers['Access-Control-Allow-Origin'] = '*'
+    self.response.headers['Access-Control-Allow-Methods'] = 'PUT, GET, OPTIONS'
+    self.response.headers['Access-Control-Allow-Credentials'] = 'true'
+    self.response.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept'
+    self.response.headers['Content-Type'] = 'application/json'
+    return func(self, *args, **kwargs)
+  return helper
+
+
 class DecisionWithoutId(webapp2.RequestHandler):
+  @openendpoint
   @parameters('title', 'expiration', 'options', 'data')
   def post(self, title=None, expiration=None, options=None, data=None):
     entity = Decision()
@@ -36,6 +48,7 @@ class DecisionWithoutId(webapp2.RequestHandler):
 
 
 class DecisionWithId(webapp2.RequestHandler):
+  @openendpoint
   def get(self, decisionIdentifier):
     entity = Decision.getByIdentifier(decisionIdentifier)
     if entity is None:
@@ -54,6 +67,7 @@ class DecisionWithId(webapp2.RequestHandler):
 
 
 class Votes(webapp2.RequestHandler):
+  @openendpoint
   def get(self, decisionIdentifier, optionIndex):
     entity = Decision.getByIdentifier(decisionIdentifier)
     if entity is None:
@@ -62,8 +76,9 @@ class Votes(webapp2.RequestHandler):
     option = entity.options[int(optionIndex)]
     self.response.out.write(dumps({
       'votes': option.votes
-    })) 
+    }))
   
+  @openendpoint
   def post(self, decisionIdentifier, optionIndex):
     entity = Decision.getByIdentifier(decisionIdentifier)
     if entity is None:
