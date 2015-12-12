@@ -20,15 +20,21 @@ class Decision(db.Model):
     self.creationDateTime = datetime.utcnow()
 
   def __repr__(self):
-    return 'Decision(title=%s, expiration=%s, identifier=%s)' % (self.title, self.expiration, self.identifier)
+    return 'Decision(title=%r, expiration=%r, identifier=%r)' % (self.title, self.expiration, self.identifier)
 
 
 class Option(db.Model):
   __tablename__ = 'option'
   
   identifier = db.Column(db.Integer, primary_key=True)
-  votes = db.Column(db.Integer, primary_key=True)
+  title = db.Column(db.String)
+  votes = db.Column(db.Integer)
   decisionIdentifier = db.Column(db.Integer, db.ForeignKey('decision.identifier'))
-
+  
+  def __init__(self, title, decision):
+    self.votes = 0
+    self.title = title
+    self.decision = decision
+    
   def __repr__(self):
-    return '<Option %r>' % (self.body)
+    return '<Option title=%r decisionIdentifier=%r>' % (self.title, self.decisionIdentifier)
